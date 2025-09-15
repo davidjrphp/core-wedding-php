@@ -1,0 +1,85 @@
+/* Google Fonts (serif headline + friendly sans + script for accents) */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600&display=swap');
+
+/* Wedding palette */
+:root{
+  --white:#FFFFFF;
+  --sage:#9CAF88;          /* soft greenery */
+  --emerald:#2F5D50;       /* depth */
+  --gold:#D4AF37;          /* accents */
+  --blush:#F5E1DA;         /* warmth */
+  --text:#222;
+}
+
+html,body{scroll-behavior:smooth}
+body{
+  background:#fff;
+  color:var(--text);
+  font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+h1,h2,h3,.display-5,.display-4{font-family:'Playfair Display', serif}
+
+/* Hero headline flourish */
+.brand-script{ font-family:'Dancing Script', cursive; color:var(--gold); }
+
+/* Card polish */
+.cardish{
+  background:#fff;
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 10px 30px rgba(0,0,0,.06);
+  border-radius:1rem;
+}
+
+/* Ornament divider (from your attachment idea) */
+.ornament{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath d='M50 10 L30 5 Q50 0 70 5 Z M50 10 L30 15 Q50 20 70 15 Z' fill='%23D4AF37'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+  height:22px; width:100%;
+  opacity:.95;
+}
+
+/* Parallax section bg */
+.parallax-bg{
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Subtle fade-up on scroll (adapted from your CSS) */
+.fade-in-up{opacity:0; transform:translateY(30px); transition:all .8s ease}
+.fade-in-up.visible{opacity:1; transform:translateY(0)}
+
+/* Timeline */
+.timeline-line{ position:relative }
+.timeline-line::after{
+  content:'';
+  position:absolute; left:50%; top:0; transform:translateX(-50%);
+  width:2px; height:100%;
+  background: linear-gradient(to bottom, var(--gold), var(--sage));
+  z-index:0; opacity:.5;
+}
+@media (max-width: 991px){
+  .timeline-line::after{ left:24px; transform:none; }
+}
+
+/* Buttons & accents */
+.btn-success{ background:var(--emerald); border-color:var(--emerald) }
+.btn-success:hover{ filter:brightness(.95) }
+.btn-outline-success{ color:var(--emerald); border-color:var(--emerald) }
+.btn-outline-success:hover{ background:var(--emerald); color:#fff }
+.badge-palette{ display:inline-block; width:22px; height:22px; border-radius:6px; border:1px solid rgba(0,0,0,.08) }
+
+blockquote{
+  border-left:4px solid var(--gold);
+  padding-left:1rem; margin-left:.3rem; color:#444;
+}
+
+/* Swiper height helpers */
+.swiper{ --swiper-navigation-size:28px }
+.hero-swiper img{ height:520px; object-fit:cover; }
+
+/* Map wrapper radius */
+.map-wrap{ border-radius:1rem; overflow:hidden }

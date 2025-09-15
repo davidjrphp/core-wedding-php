@@ -1,0 +1,24 @@
+core-wedding-php/
+├─ docker-compose.yml
+├─ docker/
+│  ├─ app/
+│  │  └─ Dockerfile
+│  └─ nginx/
+│     └─ default.conf
+├─ config.sample.php
+├─ schema.sql
+├─ templates/
+│  ├─ header.php
+│  ├─ footer.php
+│  ├─ landing.php
+│  ├─ admin_login.php
+│  ├─ admin_dashboard.php
+│  ├─ admin_guests.php
+│  └─ admin_photos.php
+└─ public/
+   ├─ index.php
+   └─ assets/
+      ├─ css/style.css
+      └─ js/app.js
+   └─ uploads/
+      └─ photos/        (leave empty; make sure writable)
