@@ -32,10 +32,12 @@ if ($action === 'rsvp' && $_SERVER['REQUEST_METHOD'] === 'POST') {
   $email = trim($_POST['email'] ?? '');
   $phone = trim($_POST['phone'] ?? '');
   $att = in_array($_POST['attending'] ?? 'maybe', ['yes','no','maybe']) ? $_POST['attending'] : 'maybe';
+  $side = in_array($_POST['family_side'] ?? '', ['groom','bride']) ? $_POST['family_side'] : null;
   $msg = trim($_POST['message'] ?? '');
   if ($full === '') { http_response_code(422); die('Full name required'); }
-  $stmt = db()->prepare('INSERT INTO guests (full_name,email,phone,attending,message) VALUES (?,?,?,?,?)');
-  $stmt->execute([$full,$email ?: null,$phone ?: null,$att,$msg ?: null]);
+  if ($side === null) { http_response_code(422); die('Please choose Groom\'s Side or Bride\'s Side'); }
+  $stmt = db()->prepare('INSERT INTO guests (full_name,email,phone,attending,family_side,message) VALUES (?,?,?,?,?,?)');
+  $stmt->execute([$full,$email ?: null,$phone ?: null,$att,$side,$msg ?: null]);
   $_SESSION['flash'] = 'Thank you! Your RSVP has been recorded.';
   header('Location: ./'); exit;
 }
@@ -64,6 +66,18 @@ if ($action === 'guests') {
   require_admin();
   $guests = db()->query("SELECT * FROM guests ORDER BY created_at DESC LIMIT 1000")->fetchAll();
   include __DIR__ . '/../includes/admin_guests.php'; exit;
+}
+if ($action === 'update_rsvp_status' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+  require_admin();
+  $id = (int)($_POST['id'] ?? 0);
+  $status = $_POST['rsvp_status'] ?? '';
+  if (!in_array($status, ['acknowledged','declined','pending'], true)) {
+    http_response_code(422); die('Invalid status');
+  }
+  $stmt = db()->prepare('UPDATE guests SET rsvp_status=? WHERE id=?');
+  $stmt->execute([$status, $id]);
+  $_SESSION['flash'] = 'RSVP status updated.';
+  header('Location: ?action=guests'); exit;
 }
 if ($action === 'photos') {
   require_admin();

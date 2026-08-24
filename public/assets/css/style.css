@@ -1,5 +1,5 @@
 /* Google Fonts (serif headline + friendly sans + script for accents) */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600&display=swap');
 
 /* Wedding palette */
 :root{
@@ -17,10 +17,40 @@ body{
   color:var(--text);
   font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
-h1,h2,h3,.display-5,.display-4{font-family:'Playfair Display', serif}
+h1,h2,h3,.display-5,.display-4{font-family:'Cormorant Garamond', serif; font-weight:600;}
 
 /* Hero headline flourish */
 .brand-script{ font-family:'Dancing Script', cursive; color:var(--gold); }
+
+/* Small-caps tracked label above section headings */
+.eyebrow{
+  display:inline-block;
+  font-family:'Inter', sans-serif;
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:.5rem;
+}
+.section-head{ text-align:center; margin-bottom:2.25rem; }
+.section-head h2{ font-size:2.4rem; margin-bottom:.5rem; }
+.section-head .ornament{ margin-left:auto; margin-right:auto; max-width:140px; }
+
+/* Generous section rhythm */
+section{ scroll-margin-top:90px; }
+section.mt-5{ margin-top:5.5rem !important; }
+
+/* Tracked pill buttons */
+.btn{
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-size:.8rem;
+  font-weight:600;
+  padding:.65rem 1.6rem;
+  border-radius:50px;
+}
+.btn-lg{ padding:.8rem 2.1rem; font-size:.85rem; }
 
 /* Card polish */
 .cardish{
@@ -64,6 +94,108 @@ h1,h2,h3,.display-5,.display-4{font-family:'Playfair Display', serif}
 @media (max-width: 991px){
   .timeline-line::after{ left:24px; transform:none; }
 }
+.timeline-time{
+  font-family:'Cormorant Garamond', serif;
+  font-size:1.1rem;
+  font-weight:600;
+  color:var(--gold);
+  letter-spacing:.03em;
+}
+
+/* Hero: formal invitation frame */
+.hero-frame{
+  position:relative;
+  border:1px solid rgba(212,175,55,.45);
+  outline:1px solid rgba(212,175,55,.45);
+  outline-offset:8px;
+}
+.hero-eyebrow{
+  font-family:'Inter', sans-serif;
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--emerald);
+  opacity:.85;
+}
+
+/* Countdown boxes */
+.countdown-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:.6rem;
+  max-width:420px;
+}
+.countdown-box{
+  background:#fff;
+  border:1px solid rgba(212,175,55,.35);
+  border-radius:.75rem;
+  padding:.65rem .25rem;
+  text-align:center;
+}
+.countdown-box .num{
+  font-family:'Cormorant Garamond', serif;
+  font-size:2rem;
+  font-weight:700;
+  color:var(--emerald);
+  line-height:1;
+}
+.countdown-box .lbl{
+  display:block;
+  margin-top:.2rem;
+  font-size:.62rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#8a8a8a;
+}
+
+/* Nav polish */
+.navbar-nav .nav-link{
+  font-size:.82rem;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--text);
+}
+.navbar-nav .nav-link:hover{ color:var(--emerald); }
+
+/* Lightbox */
+.lightbox-overlay{
+  position:fixed; inset:0; z-index:1050;
+  background:rgba(10,10,10,.92);
+  display:flex; align-items:center; justify-content:center;
+  padding:2rem;
+  opacity:0; pointer-events:none;
+  transition:opacity .25s ease;
+}
+.lightbox-overlay.open{ opacity:1; pointer-events:auto; }
+.lightbox-overlay img{
+  max-width:100%; max-height:90vh;
+  border-radius:.5rem;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.lightbox-close{
+  position:absolute; top:1.25rem; right:1.5rem;
+  color:#fff; font-size:2rem; line-height:1; cursor:pointer;
+  background:none; border:0;
+}
+
+/* Footer sentiment */
+.site-footer-note{
+  text-align:center;
+  padding:3rem 0 2rem;
+  color:#8a8a8a;
+}
+.site-footer-note .brand-script{ font-size:1.6rem; }
+
+/* Site-wide copyright bar */
+.site-copyright{
+  border-top:1px solid rgba(0,0,0,.08);
+  font-size:.8rem;
+  color:#9a9a9a;
+}
+.site-copyright a{ color:var(--emerald); text-decoration:none; font-weight:600; }
+.site-copyright a:hover{ text-decoration:underline; }
 
 /* Buttons & accents */
 .btn-success{ background:var(--emerald); border-color:var(--emerald) }
@@ -83,3 +215,26 @@ blockquote{
 
 /* Map wrapper radius */
 .map-wrap{ border-radius:1rem; overflow:hidden }
+
+/* Gallery: sliding carousel, 3 wide fixed-size tiles at a time, same size for every photo */
+.gallery-swiper{ width:100%; overflow:hidden; }
+.gallery-swiper .swiper-slide{
+  position:relative;
+  height:clamp(280px, 30vw, 420px);
+  border-radius:.6rem;
+  overflow:hidden;
+}
+.gallery-swiper .swiper-slide img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover; cursor:zoom-in;
+}
+.gallery-caption{
+  position:absolute; left:0; right:0; bottom:0;
+  padding:1.75rem .9rem .6rem;
+  background:linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0,0));
+  color:#fff; font-family:'Cormorant Garamond', serif; font-size:.95rem;
+}
+@media (max-width: 767px){
+  .gallery-swiper .swiper-slide{ height:clamp(240px, 60vw, 340px); }
+}

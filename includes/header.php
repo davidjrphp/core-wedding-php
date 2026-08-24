@@ -8,7 +8,7 @@ $base = rtrim($config['app']['base_url'] ?? '', '/');
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mulumba &amp; Patrick</title>
+  <title>Ketty &amp; Musa</title>
   <meta name="theme-color" content="#2F5D50">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
@@ -19,7 +19,7 @@ $base = rtrim($config['app']['base_url'] ?? '', '/');
 <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
   <div class="container">
     <a class="navbar-brand text-success fw-bold" href="<?= $base ?>/">
-      <span class="brand-script fs-3">Mulumba</span> &amp; <span class="brand-script fs-3">Patrick</span>
+      <span class="brand-script fs-3">Ketty</span> &amp; <span class="brand-script fs-3">Musa</span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
       <span class="navbar-toggler-icon"></span>

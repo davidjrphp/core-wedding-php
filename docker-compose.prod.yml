@@ -1,0 +1,44 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: wedding_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    volumes:
+      - wedding_pg_data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    networks: [wedding_net]
+
+  app:
+    image: ghcr.io/${GHCR_OWNER}/core-wedding-php-app:${IMAGE_TAG:-latest}
+    container_name: wedding_app
+    restart: unless-stopped
+    depends_on: [postgres]
+    env_file: .env
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+    volumes:
+      - wedding_uploads:/var/www/html/public/uploads
+    networks: [wedding_net]
+
+  web:
+    image: ghcr.io/${GHCR_OWNER}/core-wedding-php-web:${IMAGE_TAG:-latest}
+    container_name: wedding_web
+    restart: unless-stopped
+    depends_on: [app]
+    ports:
+      - "80:80"
+    volumes:
+      - wedding_uploads:/var/www/html/public/uploads
+    networks: [wedding_net]
+
+networks:
+  wedding_net: {}
+
+volumes:
+  wedding_pg_data: {}
+  wedding_uploads: {}

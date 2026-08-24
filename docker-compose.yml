@@ -20,7 +20,7 @@ services:
     image: nginx:1.25-alpine
     container_name: wedding_web
     ports:
-      - "8080:80"
+      - "8083:80"
     volumes:
       - ./public:/var/www/html/public
       - ./includes:/var/www/html/includes
