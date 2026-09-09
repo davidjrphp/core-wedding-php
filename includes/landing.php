@@ -66,7 +66,7 @@
 </section>
 
 <!-- OUR STORY -->
-<section id="story" class="mt-5 fade-in-up">
+<!-- <section id="story" class="mt-5 fade-in-up">
   <div class="section-head">
     <div class="eyebrow">The Beginning</div>
     <h2 class="text-success">Our Story</h2>
@@ -80,7 +80,7 @@
     <h5>The Proposal</h5>
     <p>A private and heartfelt moment that sealed the promise of forever 💍.</p>
   </div>
-</section>
+</section> -->
 
 <!-- TIMELINE -->
 <section id="ourday" class="mt-5">
