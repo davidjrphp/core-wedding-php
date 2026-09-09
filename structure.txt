@@ -21,4 +21,4 @@ core-wedding-php/
       ├─ css/style.css
       └─ js/app.js
    └─ uploads/
-      └─ photos/        (leave empty; make sure writable)
+      └─ photos/        
