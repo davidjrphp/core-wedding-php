@@ -97,6 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const map = L.map('mapid', { zoomControl: true }).setView([-15.423129, 28.300381], 15);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
     const marker = L.marker([-15.423129, 28.300381]).addTo(map);
-    marker.bindPopup('<b>Civic Centre</b><br>Marriage Blessing · 09:30 AM<br>Lusaka, Zambia').openPopup();
+    marker.bindPopup('<b>Hatbit Restaurant and Events Junction</b><br>Marriage Blessing · 09:30 AM<br>Lusaka, Zambia').openPopup();
   }
 });
