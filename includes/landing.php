@@ -10,7 +10,7 @@
       <div class="col-lg-6 fade-in-up">
         <div class="hero-eyebrow mb-2">You are invited to celebrate</div>
         <h1 class="display-5 fw-bold text-success">
-          Ketty <span class="text-warning">&amp;</span> Musa
+          Musa <span class="text-warning">&amp;</span> Ketty
         </h1>
         <p class="lead text-secondary mb-2">Join us as we celebrate the beginning of our forever.</p>
         <div class="ornament my-3"></div>
@@ -19,7 +19,7 @@
           <div class="cardish px-3 py-2">
             <div class="small text-uppercase text-success fw-semibold">Our Wedding Day</div>
             <div>📅 <strong>Saturday, 21st November 2026</strong></div>
-            <div>📍 <strong>Civic Centre</strong> (Blessing) &amp; <strong>Habitat Restaurant and Events Junction</strong> (Reception), Lusaka</div>
+            <div>📍<strong>Hatbit Restaurant and Events Junction</strong> (Reception), Lusaka</div>
           </div>
           <a href="#rsvp" class="btn btn-success btn-lg">RSVP Now</a>
         </div>
@@ -93,21 +93,21 @@
     <div class="row g-4">
       <div class="col-lg-6 fade-in-up">
         <div class="cardish p-4">
-          <div class="timeline-time">09:30 – 11:30 AM</div>
+          <div class="timeline-time text-success">09:30 – 11:30 AM</div>
           <h5 class="mb-1">✨ Marriage Blessing</h5>
           <p class="mb-0">Sacred vows surrounded by loved ones, at Civic Centre.</p>
         </div>
       </div>
       <div class="col-lg-6 fade-in-up">
         <div class="cardish p-4">
-          <div class="timeline-time">12:00 – 14:00 PM</div>
+          <div class="timeline-time text-success">12:00 – 14:00 PM</div>
           <h5 class="mb-1">📸 Photoshoot</h5>
           <p class="mb-0">Cherishing the first moments as husband and wife.</p>
         </div>
       </div>
       <div class="col-lg-6 fade-in-up">
         <div class="cardish p-4">
-          <div class="timeline-time">16:00 PM</div>
+          <div class="timeline-time text-success">16:00 PM</div>
           <h5 class="mb-1">🎉 Reception</h5>
           <p class="mb-0">Dinner, dance, and heartfelt toasts, at Habitat Restaurant and Events Junction.</p>
         </div>
@@ -224,14 +224,14 @@
   <div class="row g-4">
     <div class="col-lg-7">
       <div class="cardish p-2">
-        <div class="p-2 pb-0 small text-muted">✨ Marriage Blessing — Civic Centre, 09:30 AM</div>
+        <div class="p-2 pb-0 small text-muted">✨ Hatbit Restaurant and Events Junction, 09:30 AM</div>
         <div id="mapid" class="map-wrap" style="height:380px"></div>
       </div>
     </div>
     <div class="col-lg-5">
       <div class="cardish p-4 h-100 d-flex flex-column">
         <div class="small text-muted">🎉 Reception — 16:00 PM</div>
-        <h5 class="mb-1">Habitat Restaurant and Events Junction</h5>
+        <h5 class="mb-1">Hatbit Restaurant and Events Junction</h5>
         <p class="mb-3">Lilayi Road, Lusaka, Zambia</p>
         <a class="btn btn-outline-success mt-auto align-self-start"
            href="https://www.google.com/maps/search/?api=1&query=Habitat+Restaurant+and+Events+Junction+Lilayi+Road+Lusaka"

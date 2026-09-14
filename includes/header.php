@@ -19,7 +19,7 @@ $base = rtrim($config['app']['base_url'] ?? '', '/');
 <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
   <div class="container">
     <a class="navbar-brand text-success fw-bold" href="<?= $base ?>/">
-      <span class="brand-script fs-3">Ketty</span> &amp; <span class="brand-script fs-3">Musa</span>
+      <span class="brand-script fs-3">Musa</span> &amp; <span class="brand-script fs-3">Ketty</span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
       <span class="navbar-toggler-icon"></span>
