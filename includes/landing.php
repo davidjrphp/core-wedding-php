@@ -19,7 +19,7 @@
           <div class="cardish px-3 py-2">
             <div class="small text-uppercase text-success fw-semibold">Our Wedding Day</div>
             <div>📅 <strong>Saturday, 21st November 2026</strong></div>
-            <div>📍<strong>Hatbit Restaurant and Events Junction</strong> (Reception), Lusaka</div>
+            <div>📍<strong>Hatbit Restaurant and Events Junction</strong> (Marriage Blessing & Reception), Lusaka</div>
           </div>
           <a href="#rsvp" class="btn btn-success btn-lg">RSVP Now</a>
         </div>
@@ -95,7 +95,7 @@
         <div class="cardish p-4">
           <div class="timeline-time text-success">09:30 – 11:30 AM</div>
           <h5 class="mb-1">✨ Marriage Blessing</h5>
-          <p class="mb-0">Sacred vows surrounded by loved ones, at Civic Centre.</p>
+          <p class="mb-0">Sacred vows surrounded by loved ones, at 📍<strong>Hatbit Restaurant and Events Junction</strong></p>
         </div>
       </div>
       <div class="col-lg-6 fade-in-up">
@@ -109,7 +109,7 @@
         <div class="cardish p-4">
           <div class="timeline-time text-success">16:00 PM</div>
           <h5 class="mb-1">🎉 Reception</h5>
-          <p class="mb-0">Dinner, dance, and heartfelt toasts, at Habitat Restaurant and Events Junction.</p>
+          <p class="mb-0">Dinner, dance, and heartfelt toasts, at 📍<strong>Hatbit Restaurant and Events Junction</strong></p>
         </div>
       </div>
       <div class="col-12 fade-in-up">
