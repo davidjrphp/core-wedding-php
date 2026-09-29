@@ -47,7 +47,8 @@ jobs:
           DB_PASS=ci-test-pass
           ADMIN_EMAIL=admin@example.com
           ADMIN_PASSWORD=ci-test-admin
-          BASE_URL=http://localhost:8083
+          BASE_URL=https://localhost
+          DOMAIN=localhost
           GHCR_OWNER=${{ github.repository_owner }}
           IMAGE_TAG=ci
           EOF
@@ -55,7 +56,10 @@ jobs:
           sleep 5
           docker compose -f docker-compose.prod.yml up -d app web
           sleep 5
-          curl -sf http://localhost:8083/ -o /dev/null && echo "Homepage OK"
+          # DOMAIN=localhost has no real cert (certbot needs a public domain),
+          # so nginx serves its temporary self-signed cert here -- -k skips
+          # verifying it, which is fine: this only checks the stack boots.
+          curl -skf https://localhost/ -o /dev/null && echo "Homepage OK"
           docker compose -f docker-compose.prod.yml logs
 
       - name: Tear down

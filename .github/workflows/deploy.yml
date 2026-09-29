@@ -96,6 +96,12 @@ jobs:
             ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }}
             ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}
             BASE_URL=${{ secrets.BASE_URL }}
+            SMTP_HOST=${{ secrets.SMTP_HOST }}
+            SMTP_PORT=${{ secrets.SMTP_PORT }}
+            SMTP_USER=${{ secrets.SMTP_USER }}
+            SMTP_PASS=${{ secrets.SMTP_PASS }}
+            MAIL_FROM_NAME=${{ secrets.MAIL_FROM_NAME }}
+            DOMAIN=${{ secrets.DOMAIN }}
             GHCR_OWNER=${{ github.repository_owner }}
             IMAGE_TAG=${{ github.sha }}
             EOF
@@ -103,5 +109,10 @@ jobs:
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
             docker compose -f docker-compose.prod.yml pull
             docker compose -f docker-compose.prod.yml up -d
+            docker compose -f docker-compose.prod.yml run --rm certbot certonly \
+              --webroot -w /var/www/certbot \
+              -d ${{ secrets.DOMAIN }} -d www.${{ secrets.DOMAIN }} \
+              --email ${{ secrets.LETSENCRYPT_EMAIL }} --agree-tos --non-interactive --keep-until-expiring
+            docker exec wedding_web nginx -s reload
             docker image prune -f
             docker logout ghcr.io
