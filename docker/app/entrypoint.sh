@@ -17,6 +17,10 @@ if [ -n "$DB_HOST" ]; then
   ADMIN_EMAIL_ESC=$(php_escape "$ADMIN_EMAIL")
   ADMIN_PASSWORD_ESC=$(php_escape "$ADMIN_PASSWORD")
   BASE_URL_ESC=$(php_escape "${BASE_URL:-http://localhost}")
+  SMTP_HOST_ESC=$(php_escape "${SMTP_HOST:-smtp.gmail.com}")
+  SMTP_USER_ESC=$(php_escape "$SMTP_USER")
+  SMTP_PASS_ESC=$(php_escape "$SMTP_PASS")
+  MAIL_FROM_NAME_ESC=$(php_escape "${MAIL_FROM_NAME:-Wedding RSVP (No Reply)}")
 
   cat > /var/www/html/config.php <<PHP
 <?php
@@ -34,6 +38,13 @@ return [
   ],
   'app' => [
     'base_url' => '${BASE_URL_ESC}'
+  ],
+  'mail' => [
+    'smtp_host' => '${SMTP_HOST_ESC}',
+    'smtp_port' => ${SMTP_PORT:-587},
+    'smtp_user' => '${SMTP_USER_ESC}',
+    'smtp_pass' => '${SMTP_PASS_ESC}',
+    'from_name' => '${MAIL_FROM_NAME_ESC}'
   ]
 ];
 PHP

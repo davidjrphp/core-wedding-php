@@ -7,6 +7,10 @@ RUN apk add --no-cache libpq-dev tzdata \
 
 WORKDIR /var/www/html
 
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --no-interaction --optimize-autoloader
+
 # PHP-FPM slowlog (helps debug timeouts)
 RUN { \
   echo "[www]"; \

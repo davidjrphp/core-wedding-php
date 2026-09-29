@@ -7,6 +7,7 @@ if (!file_exists($configPath)) {
   $configPath = __DIR__ . '/../config.php';
 }
 $config = require $configPath;
+require_once __DIR__ . '/../includes/mailer.php';
 
 function db() {
   static $pdo = null;
@@ -76,6 +77,13 @@ if ($action === 'update_rsvp_status' && $_SERVER['REQUEST_METHOD'] === 'POST') {
   }
   $stmt = db()->prepare('UPDATE guests SET rsvp_status=? WHERE id=?');
   $stmt->execute([$status, $id]);
+  if (in_array($status, ['acknowledged', 'declined'], true)) {
+    $stmt2 = db()->prepare('SELECT full_name, email FROM guests WHERE id=?');
+    $stmt2->execute([$id]);
+    if ($guest = $stmt2->fetch()) {
+      send_rsvp_status_email($guest, $status, $config);
+    }
+  }
   $_SESSION['flash'] = 'RSVP status updated.';
   header('Location: ?action=guests'); exit;
 }
