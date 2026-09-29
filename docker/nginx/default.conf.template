@@ -1,0 +1,57 @@
+server {
+  listen 80;
+  server_name ${DOMAIN} www.${DOMAIN};
+
+  location /.well-known/acme-challenge/ {
+    root /var/www/certbot;
+  }
+
+  location / {
+    return 301 https://${DOMAIN}$request_uri;
+  }
+}
+
+server {
+  listen 443 ssl;
+  server_name www.${DOMAIN};
+
+  ssl_certificate /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
+
+  return 301 https://${DOMAIN}$request_uri;
+}
+
+server {
+  listen 443 ssl;
+  server_name ${DOMAIN};
+
+  ssl_certificate /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
+
+  root /var/www/html/public;
+  index index.php index.html;
+
+  client_max_body_size 20m;
+
+  location / {
+    try_files $uri $uri/ /index.php?$query_string;
+  }
+
+  # If someone requests /public/..., rewrite it to /
+  location ^~ /public/ {
+    rewrite ^/public/(.*)$ /$1 last;
+  }
+
+  location ~ \.php$ {
+    include fastcgi_params;
+    fastcgi_pass app:9000;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_read_timeout 120s;
+  }
+
+  location ~* \.(css|js|png|jpg|jpeg|gif|webp|svg|ico)$ {
+    try_files $uri =404;
+    expires 7d;
+    access_log off;
+  }
+}

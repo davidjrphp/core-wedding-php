@@ -30,10 +30,27 @@ services:
     container_name: wedding_web
     restart: unless-stopped
     depends_on: [app]
+    environment:
+      DOMAIN: ${DOMAIN}
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - wedding_uploads:/var/www/html/public/uploads
+      - certbot_conf:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
+    networks: [wedding_net]
+
+  # Not started by `up -d` (profile-gated). Issues/renews the cert on demand:
+  #   docker compose -f docker-compose.prod.yml run --rm certbot certonly ...
+  #   docker compose -f docker-compose.prod.yml run --rm certbot renew ...
+  certbot:
+    image: certbot/certbot:latest
+    container_name: wedding_certbot
+    profiles: ["tools"]
+    volumes:
+      - certbot_conf:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
     networks: [wedding_net]
 
 networks:
@@ -42,3 +59,5 @@ networks:
 volumes:
   wedding_pg_data: {}
   wedding_uploads: {}
+  certbot_conf: {}
+  certbot_www: {}
