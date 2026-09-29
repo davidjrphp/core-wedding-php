@@ -109,6 +109,18 @@ jobs:
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
             docker compose -f docker-compose.prod.yml pull
             docker compose -f docker-compose.prod.yml up -d
+            # nginx's bootstrap script drops a self-signed cert at the exact
+            # path certbot manages so it has something to start with. Certbot
+            # refuses to touch a "live" dir it didn't create itself, so on the
+            # very first run (no renewal config yet = it's still the dummy)
+            # clear it out first. Once a real cert exists this is a no-op, so
+            # later runs never touch the actual lineage.
+            docker compose -f docker-compose.prod.yml run --rm --entrypoint sh certbot -c "
+              if [ ! -s /etc/letsencrypt/renewal/${{ secrets.DOMAIN }}.conf ] && [ -d /etc/letsencrypt/live/${{ secrets.DOMAIN }} ]; then
+                echo 'Removing bootstrap self-signed cert before first issuance';
+                rm -rf /etc/letsencrypt/live/${{ secrets.DOMAIN }} /etc/letsencrypt/archive/${{ secrets.DOMAIN }} /etc/letsencrypt/renewal/${{ secrets.DOMAIN }}.conf;
+              fi
+            "
             docker compose -f docker-compose.prod.yml run --rm certbot certonly \
               --webroot -w /var/www/certbot \
               -d ${{ secrets.DOMAIN }} -d www.${{ secrets.DOMAIN }} \
