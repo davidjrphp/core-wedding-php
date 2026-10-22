@@ -1,4 +1,4 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.5.12-fpm-alpine
 
 # Install pgsql and helpful tools
 RUN apk add --no-cache libpq-dev tzdata \
